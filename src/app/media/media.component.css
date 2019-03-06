@@ -1,0 +1,52 @@
+.view {width:400px;padding-bottom: 0rem ! important ; }
+.table {width:400px; margin: 10px;}
+.table td, .table th {padding: .30rem;}
+
+.form-check-input { margin-left: -0.25rem;}
+.paging-curr  {
+    margin: 1px 9px;
+    border: 1px solid rgb(224, 223, 223);
+    padding: 2px 12px;
+}
+.resp-mess{
+    margin-top:20px;
+    text-align: center;
+}
+.resp-mess i {font-weight: bold; color:red;}
+.th-lg i , .table tr {
+    cursor:pointer;
+    cursor:hand;
+}
+.wid400 {
+    width:400px;
+    border: 1px solid rgb(224, 223, 223);
+    float:left;
+    margin: 12px;
+}
+.table-wrapper{
+    float:left;
+}
+
+.panel-body {
+    padding-bottom:20px;
+} 
+
+/*
+.resetBtn {
+    margin-right: 0;
+    margin-top: 0;
+    float: right; 
+    
+}
+
+.form-group{
+   display:inline-flex  
+}
+.form-group input {
+        width:160px; 
+        margin-left:10px;
+        margin-top:-4px;
+}
+.form-group label {width:82px;}
+*/
+.invalid-feedback {margin-left:10px; float:right;width:150px;}

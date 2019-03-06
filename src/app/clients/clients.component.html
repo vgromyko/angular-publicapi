@@ -1,0 +1,183 @@
+<H3 style="margin-left:10px;">
+    Full REST API
+</H3>
+<div>
+<!-- Table with panel -->
+  <div >
+
+      <!--Card image-->
+      <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+    
+        <div style="display: flex;">
+          <button type="button" (click)="onPrewBtn()" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="fas fa-th-large mt-0">Prew</i>
+          </button>&nbsp;
+          <p class="paging-curr">{{cpage}}</p>
+          &nbsp;<button type="button" (click)="onNextBtn()" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="fas fa-columns mt-0">Next</i>
+          </button>
+        </div>
+    
+        <span class="white-text mx-3">Client List</span>
+    
+        <div>
+          <button type="button" (click)="onSort('')" class="btn btn-outline-white btn-rounded btn-sm px-2">
+            <i class="fas fa-pencil-alt mt-0">Unsort</i>
+          </button>
+          &nbsp;
+          <button type="button" (click)="delClient()" class="btn btn-outline-white btn-rounded btn-sm px-2">
+              <i class="fas fa-info-circle mt-0">Delete selected</i>
+            </button>
+          &nbsp;
+          <button type="button" (click)="newClientForm()" class="btn btn-outline-white btn-rounded btn-sm px-2">
+              <i class="fas fa-info-circle mt-0">Add new client</i>
+            </button>
+        </div>
+    
+      </div>
+      <!--/Card image-->
+    
+      <div class="px-4">
+    
+        <div class="table-wrapper">
+          <!--Table-->
+          <table class="table table-hover mb-0">
+    
+            <!--Table head-->
+            <thead>
+              <tr>
+                <th>
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="chbx" id="checkbox">
+                  <label class="form-check-label" for="checkbox" class="mr-2 label-table"></label>
+                </th>
+                <th class="th-lg">
+                  <a (click)="onSort('fname')">
+                    <i class="fas fa-sort ml-1">First Name</i>
+                  </a>
+                </th>
+                <th class="th-lg">
+                  <a  (click)="onSort('lname')" >
+                    <i class="fas fa-sort ml-1">Last Name</i>
+                  </a>
+                </th>
+                <th class="th-lg">
+                  <a (click)="onSort('email')">
+                    <i class="fas fa-sort ml-1">e-mail</i>
+                  </a>
+                </th>
+                <th class="th-lg">
+                  <a (click)="onSort('phone')">
+                    <i class="fas fa-sort ml-1">phone</i>
+                  </a>
+                </th>
+              </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+              <ng-template ngFor let-user [ngForOf]="clientsList.data " >
+                <tr    (click)="fillClientForm(user.id)" >
+                <th scope="row">
+                  <input class="form-check-input" [title]="user.id" [checked]="chbx"  type="checkbox" [id]="'checkbox'+user.id" >
+                  <label class="form-check-label" [for]="'checkbox'+user.id" class="label-table"></label>
+                </th>
+                  <td  [innerHTML]="user.fname"></td>
+                  <td  [innerHTML]="user.lname"></td>
+                  <td  [innerHTML]="user.email"></td>
+                  <td  [innerHTML]="user.phone"></td>
+                </tr>
+              </ng-template>
+            </tbody>
+            <!--Table body-->
+          </table>
+          <!--Table-->
+        </div>
+    
+ 
+    
+  
+  <!-- Table with panel -->
+<!-- New client form-->
+
+<div *ngIf="false === userForm">
+  <div>{{respMessage}} <i>{{respError}}</i> &nbsp;</div>    
+</div>
+
+<div class="container wid450" *ngIf="true === userForm" >    
+  <div class="resp-mess">{{respMessage}} <i>{{respError}}</i> &nbsp;</div>    
+      <div id="signupbox" style=" margin-top:20px" class="mainbox col-md-12 col-md-offset-3 col-sm-4 col-sm-offset-2">
+         
+        <div class="panel panel-info">
+              <div class="panel-body" >
+
+                <form name="myform" (ngSubmit)="f.form.valid && onSubmit(f.form)"   #f="ngForm" novalidate>
+                    <input type="hidden"  name="userId" #userId />
+                    
+                    <div class="form-group">
+                          <label for="flogin">Login: </label>
+                          <input type="text" class="form-control" #llogin  name="flogin" [(ngModel)]="form.llogin" #flogin="ngModel" [ngClass]="{ 'is-invalid': f.submitted && flogin.invalid }" required minlength="4" />
+                          <div *ngIf="f.submitted && flogin.invalid" class="invalid-feedback">
+                              <div *ngIf="flogin.errors.required">Login is required</div>
+                              <div *ngIf="flogin.errors.minlength"> at least 4 characters</div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="password">Password: </label>
+                          <input type="text" #passw class="form-control"  name="password" [(ngModel)]="form.passw" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" /> 
+                          <div *ngIf="f.submitted && password.invalid" class="invalid-feedback"> 
+                              <div *ngIf="password.errors.required">Password is required</div>
+                              <div *ngIf="password.errors.minlength"> at least 6 characters</div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                            <label for="firstName">First&nbsp;Name: </label>
+                            <input type="text" #fname class="form-control"  name="firstName" [(ngModel)]="form.fname" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required />
+                            <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                                <div *ngIf="firstName.errors.required">First Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last&nbsp;Name: </label>
+                            <input type="text" #lname   class="form-control"   name="lastName" [(ngModel)]="form.lname" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required />
+                            <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                                <div *ngIf="lastName.errors.required">Last Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="eemail">Email: </label>
+                            <input type="text" #email class="form-control"  name="eemail" [(ngModel)]="form.email" #eemail="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eemail.invalid }" required email />
+                            <div *ngIf="f.submitted && eemail.invalid" class="invalid-feedback">
+                                <div *ngIf="eemail.errors.required">Email is required</div>
+                                <div *ngIf="eemail.errors.email"> valid email address</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pphone">Phone: </label>
+                            <input type="text" #phone class="form-control" name="pphone" [(ngModel)]="form.phone" #pphone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && pphone.invalid }" required minlength="6" />
+                            <div *ngIf="f.submitted && pphone.invalid" class="invalid-feedback">
+                                <div *ngIf="pphone.errors.required">Phone is required</div>
+                                <div *ngIf="pphone.errors.minlength">at least 6 characters</div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group" style="margin-left:93px">
+                            <button class="btn btn-primary">Submit form</button>
+                        </div>
+                </form>
+                
+              </div>
+          </div>
+      </div> 
+  </div>
+    
+</div>
+</div>
+
+
+
+<!-- New client form-->
+</div>

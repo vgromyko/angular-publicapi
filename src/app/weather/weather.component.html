@@ -1,0 +1,70 @@
+
+
+<div class="container-fluid">
+    <h3>{{title}}</h3>
+    <div>  
+      Latitude:&nbsp;<input type=text #searchLat  class="srchinp" value="{{latd}}">&nbsp;&nbsp;
+      Longitude:&nbsp;<input type=text #searchLon  class="srchinp" value="{{long}}">&nbsp;&nbsp;&nbsp;&nbsp;
+     
+      <button type="button" (click)="getFreeSearchItems(searchLat.value,searchLon.value )" class="btn btn-outline-white btn-rounded btn-sm px-2" >
+          <b>Get data</b>
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <select>
+          <option *ngFor="let city of cities"  [innerHTML]="city[2] +' , '+ city[4]" (click)="getSelectedItem(city[0],city[1])"  >
+      </option>
+      </select>
+ 
+    
+    </div>
+    <div *ngIf="undefined === restItems"></div>
+    <div *ngIf="undefined !== restItems">
+      <div>
+      <div class="data-container">
+      <table class="table caption">
+        <tr>
+          <td><b>Latitude:</b></td>
+          <td [innerHTML]="restItems.coord.lat  + '&#176;'"></td>
+          <td><b>Longitude:</b></td>
+          <td [innerHTML]="restItems.coord.lon  + '&#176;'"></td>
+          <td ><b>Country code:</b></td>
+          <td [innerHTML]="restItems.sys.country"></td>
+        </tr>
+        <tr>
+          <td ><b>Temperature:</b></td>
+          <td [innerHTML]="restItems.main.temp + '&#176;'"></td>
+          <td ><b>Temperature min:</b></td>
+          <td [innerHTML]="restItems.main.temp_min  + '&#176;'"></td>
+          <td ><b>Temperature max:</b></td>
+          <td [innerHTML]="restItems.main.temp_max  + '&#176;'"></td>
+        </tr>
+        <tr>
+          <td ><b>Pressure:</b></td>
+          <td [innerHTML]="restItems.main.pressure"></td>
+          <td ><b>Humidity:</b></td>
+          <td [innerHTML]="restItems.main.humidity | percent "></td>
+          <td ><b>Visibility:</b></td>
+          <td [innerHTML]="restItems.visibility"></td>
+        </tr>
+        <tr>
+          <td><b>Wind speed:</b></td>
+          <td [innerHTML]="restItems.wind.speed"></td>
+          <td ><b>Wind direction:</b></td>
+          <td [innerHTML]="restItems.wind.deg + '&#176;'"></td>
+          <td ><b>Clouds:</b></td>
+          <td [innerHTML]="restItems.clouds.all"></td>
+        </tr>   
+        <tr>
+          <td><b>Description:</b></td>
+          <td colspan=5 [innerHTML]="restItems.weather[0].main +' : '+ restItems.weather[0].description"></td>
+        </tr>  
+        </table>  
+      </div>
+
+      
+
+      </div>
+        
+
+
+    </div>

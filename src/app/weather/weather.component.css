@@ -1,0 +1,15 @@
+input {
+    width:60px;
+}
+
+.table {
+    border:1px solid #CCC;
+}
+
+.data-container {
+   width:700px; 
+   margin-left:5px; 
+   margin-top:20px;
+   float:left;
+}
+

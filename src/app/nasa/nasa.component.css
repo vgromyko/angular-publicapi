@@ -1,0 +1,37 @@
+.leftdiv {
+    display: block-inline; 
+    width: 500px; 
+    height:280px ; 
+    float:left; 
+    overflow:auto; 
+    margin: 8px;
+}
+
+.rtdiv {
+    display:inline; 
+    margin: 0 5px 5px;
+}
+
+.srchinp {width:120px;}
+
+.nasaid {font-size: 16px; font-weight: bold;}
+
+.rtdivtext{
+    margin-top:0;
+}
+
+.img-thumbnail{
+    width:280px; 
+    margin-right:6px;
+}
+
+.leftdiv ul li {
+    cursor: pointer;
+    cursor: hand;
+    list-style-type: none;
+
+}
+
+.leftdiv ul li:hover {font-weight:bold; color: #444;}
+
+ 

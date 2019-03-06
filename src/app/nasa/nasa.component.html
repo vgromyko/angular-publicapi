@@ -1,0 +1,29 @@
+
+<div class="container-fluid">
+    <h3>{{title}}</h3>
+    <div>  
+      <input type=text #searchString   class="input-md textinput textInput form-contro srchinp">&nbsp;&nbsp;
+      <button type="button" (click)="getFreeSearchItems(searchString.value)" class="btn btn-outline-white btn-rounded btn-sm px-2" >
+          <b>Free search</b>
+      </button> 
+    </div>
+    <div *ngIf="undefined === restItems"></div>
+    <div *ngIf="undefined !== restItems">
+      <div class="leftdiv"  >
+      <ul>
+        <li *ngFor="let post of restItems.items" [innerHTML]=" post.data[0].title" 
+            (click)="selectedContent=post"  (click)="onChangeText(post.links[0].href +','+ post.data[0].nasa_id+','+ post.href)"  >
+        </li>
+      </ul>
+      </div>
+      <div  class="rtdiv">
+          <img class="img-thumbnail rounded float-left" src="{{itemUrl}}" >
+          <span class="nasaid" *ngIf="undefined !== selectedContent" [innerHTML]="sanitizer.bypassSecurityTrustHtml(selectedContent.data[0].nasa_id)"  ></span>
+          <div  *ngIf="undefined !== selectedContent" [innerHTML]="sanitizer.bypassSecurityTrustHtml(selectedContent.data[0].description)"  ></div>
+    
+      </div>
+    </div>
+    <br>
+    <img class="img-fluid" src="{{restAssetItems[0]}}" >
+    </div>
+    
