@@ -19,8 +19,8 @@ https://cli.angular.io
 
 open  app-rooting
 
-fill follow code
-############################
+fill follow code for start
+#################################
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
